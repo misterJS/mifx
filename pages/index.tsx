@@ -110,25 +110,18 @@ const Home: NextPage = () => {
 export async function getServerSideProps({ req, res }: any) {
   let tokenFromCookie;
   if (checkCookies("token", { req, res })) {
-    // Check if there is a token between the browser and the server.
-    // Get the cookie.
-    // Set the session for Altogic's built in fetcher so we can send requests.
-    // Get the current user from database.
     tokenFromCookie = getCookie("token", { req, res });
 
   } else {
     return {
-      //If there is no token, redirect to sign-in page.
       redirect: { destination: "/auth/login", permanent: false },
     };
   }
   if (req.cookies) {
-    //If a user is returned from database, pass it as props.
     return {
       props: { cookies: req.cookies },
     };
   } else {
-    //If token is not active anymore, remove the cookie and redirect to sign-in page.
     removeCookies("token", {
       req,
       res,
