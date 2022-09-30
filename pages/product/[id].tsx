@@ -37,9 +37,6 @@ const ProductDetailMemo = () => {
         fetchProducts()
     }, [])
 
-    console.log(products);
-
-
     return (
         <div className="flex mx-6 my-6 flex-row gap-6 border-transparent shadow-md rounded-md py-6 px-6">
             <div className="w-5/6">
